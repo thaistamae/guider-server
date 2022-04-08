@@ -2,8 +2,8 @@ const jwt = require("express-jwt");
 
 function extractTokenFromHeaders(req, res) {
   if (!req.headers.authorization) {
-    // O throw tem o mesmo efeito do return de encerrar a execução da função
-    throw new Error("Missing Authorization Header.");
+    console.error("Missing Auth Header");
+    return res.status(400).json({ msg: "Missing Auth Header" });
   }
 
   return req.headers.authorization.split(" ")[1];
